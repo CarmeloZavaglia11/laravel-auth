@@ -115,7 +115,7 @@ class PostController extends Controller
 
         if ((array_key_exists('tags', $data))) {
             $post->tags()->sync($data['tags']);
-        }  else if ((!array_key_exists('tags', $data))) {
+        }  else {
             $post->tags()->detach();
         }
         
