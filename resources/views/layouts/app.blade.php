@@ -109,7 +109,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Blog made by Carmelo Zavaglia</h5>
                     <p class="card-text">With supporting of my teacher.</p>
-                    <a href="https://github.com/CarmeloZavaglia11" class="btn btn-primary">GitHub</a>
+                    <a href="https://github.com/CarmeloZavaglia11" target="_blank" class="btn btn-primary">GitHub</a>
                 </div>
             </div>
         </footer>
