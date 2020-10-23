@@ -27,3 +27,6 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
     Route::resource('posts', 'PostController');
 
 });
+
+Route::get('posts','PostController@index')->name('posts.guest.home');
+Route::get('posts/show/{slug}','PostController@show')->name('posts.guest.show');

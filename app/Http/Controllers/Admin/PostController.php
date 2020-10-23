@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\str;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -17,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('user_id',Auth::id())->orderBy('created_at','desc')->get();
+        $posts = Post::where('user_id',Auth::id())->orderBy('created_at','desc')->paginate(2);
 
         return view('admin.posts.index',compact('posts'));
     }
@@ -47,14 +49,19 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|min:5|max:200',
-            'body' => 'required|min:5|max:500',           
+            'body' => 'required|min:5|max:500',
+            'img' => 'image'           
         ]);
 
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($data['title'],'-');
-
+        
+        if (!empty($data['img'])) {
+            $data['img'] = Storage::disk('public')->put('images', $data['img']);
+        }
 
         $postNew = new Post;
+
         $postNew->fill($data);
 
         $saved = $postNew->save();
@@ -107,16 +114,26 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|min:5|max:200',
-            'body' => 'required|min:5|max:500',           
+            'body' => 'required|min:5|max:500',  
+            'img' => 'image'         
         ]);
 
         $data['user_id'] = Auth::id();
         $data['slug'] = Str::slug($data['title'],'-');
+        $data['updated_at'] = Carbon::now('Europe/Rome');
+
 
         if ((array_key_exists('tags', $data))) {
             $post->tags()->sync($data['tags']);
         }  else {
             $post->tags()->detach();
+        }
+
+        if (!empty($data['img'])) {
+            if (!empty($post->img)) {
+                Storage::disk('public')->delete($post->img);
+            }
+            $data['img'] = Storage::disk('public')->put('images', $data['img']);
         }
         
         $post->update($data);

@@ -22,8 +22,8 @@
     {{-- ERROR--}}
     <div class="container d-flex flex-wrap">
         @foreach ($posts as $post)
-        <div class="card" style="width: 15rem;">
-            <div class="card-body">
+        <div class="card m-3" style="width: 20rem;">
+            <div class="card-body overflow-auto">
               <h5 class="card-title">{{$post->title}}</h5>
               <p class="card-text">{{$post->body}}</p>
               <div class="d-flex">
@@ -33,9 +33,16 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">DELETE</button>
                 </form>
-              </div>
+              </div>    
+              <div class="card-img mt-3" style="height:5rem;">
+                <img src="{{Storage::url($post->img)}}" class="img-fluid" alt="{{$post->title}}">
+              </div>          
             </div>
+            <a href="{{route('posts.guest.show', $post->slug)}}">Dettagli</a>
         </div>
         @endforeach
+        <div class="pagination justify-content-center fixed-bottom">
+            {{ $posts->links()}}
+        </div>
     </div>
 @endsection

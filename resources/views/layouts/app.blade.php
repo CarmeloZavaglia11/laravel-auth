@@ -40,7 +40,29 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">Post</a>
+                            @guest
+                            <a class="nav-link" href="{{ route('posts.guest.home') }}">Post</a>
+                            @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('posts.index') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Post
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                        I tuoi post
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.guest.home') }}">
+                                        Visualizza tutti i post
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.create') }}">
+                                        Crea Post
+                                    </a>
+                                </div>
+                            </li>
+                            @endguest                          
                         </li>
                         @guest
                             <li class="nav-item">

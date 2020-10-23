@@ -13,9 +13,16 @@
         @endif
     {{-- ERROR--}}
     <div class="container">
-        <form action="{{route('posts.update', $post->id)}}" method="post">
+        <form action="{{route('posts.update', $post->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
+            <div class="form-group">
+                <img src="{{Storage::url($post->img)}}" class="img-fluid" alt="{{$post->slug}}">
+            </div>
+            <div class="form-group">
+                <label for="img">Immagine</label>
+                <input type="file" name="img" accept="image/*">
+            </div>
             <div class="form-group">
                 <label for="title">Titolo</label>
                 <input type="text" name="title"  value="{{$post->title}}">

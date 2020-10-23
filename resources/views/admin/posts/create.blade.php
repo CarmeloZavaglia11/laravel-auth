@@ -13,12 +13,16 @@
         @endif
     {{-- ERROR--}}
     <div class="container">
-        <form action="{{route('posts.store')}}" method="post">
+        <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="form-group">
                 <label for="title">Titolo</label>
                 <input type="text" name="title" placeholder="inserisci un titolo..">
+            </div>
+            <div class="form-group">
+                <label for="img">Immagine</label>
+                <input type="file" name="img" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
