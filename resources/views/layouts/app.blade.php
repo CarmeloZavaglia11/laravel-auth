@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Blog
@@ -100,6 +100,19 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer>
+            <div class="card text-center">
+                <div class="card-header bg-info">
+                    Blog
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Blog made by Carmelo Zavaglia</h5>
+                    <p class="card-text">With supporting of my teacher.</p>
+                    <a href="https://github.com/CarmeloZavaglia11" class="btn btn-primary">GitHub</a>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

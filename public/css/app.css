@@ -10903,3 +10903,47 @@ a.text-dark:focus {
   }
 }
 
+body {
+  min-height: 100vh;
+}
+
+main {
+  min-height: 68vh;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card-maded {
+  transition: 0.5s ease-in-out;
+}
+
+.card-maded:hover {
+  cursor: pointer;
+  transform: scale(1.02) translateY(-8px);
+  box-shadow: 0 0 14px lightblue;
+}
+
+.card-show {
+  overflow-y: auto;
+  width: 60rem;
+  height: 40rem;
+}
+
+.card-img {
+  width: 100%;
+  height: 40%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
