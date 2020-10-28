@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="container d-flex flex-wrap">
+    <div class="container d-flex flex-wrap align-items-center flex-column">
         @foreach ($posts as $post)
-        <div class="card m-3 card-maded" style="width: 20rem;">
+        <div class="card m-3 card-maded" style="width: 50rem;">
             <div class="card-body overflow-auto">
             <h5 class="card-title text-center text-uppercase text-info">{{$post->title}}</h5>
             <h5 class="card-title">Autore: {{$post->user->name}}</h5>

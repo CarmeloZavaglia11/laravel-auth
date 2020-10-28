@@ -2,7 +2,7 @@
 
 @section('content')
     
-<div class="container d-flex justify-content-center">
+<div class="container d-flex align-items-center flex-column">
     <div class="card m-3 card-show">
       <div class="card-img">
         <img src="{{Storage::url($post->img)}}" class="img-fluid" alt="{{$post->title}}">
@@ -11,7 +11,7 @@
           <h5 class="card-title text-center text-uppercase text-info">{{$post->title}}</h5>
           <h5 class="card-title">Autore: {{$post->user->name}}</h5>
           <p class="card-text">{{$post->body}}</p> 
-          <p class="card-text">@foreach ($post->tags as $tag) Tags: {{$tag->name}} @endforeach</p>                
+          <p class="card-text">Tags: @foreach ($post->tags as $tag) {{$tag->name}}@endforeach</p>                
         </div>
 
         <div class="flex text-center">
